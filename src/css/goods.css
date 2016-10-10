@@ -1,0 +1,12 @@
+
+.banner{border-top: solid 2px #e91455;height: 616px;}
+.banner img{height: 616px;}
+.goods{background: #044b8b;margin: 0 auto;text-align: center;}
+.list{width: 1200px;margin: 0 auto;overflow: hidden;}
+.list li{width: 230px;overflow: hidden;background: #fff;text-align: left;margin: 0 0 10px 8px;border: 1px solid #ffffff;float: left;}
+.list li img{width: 210px;}
+.title{height: 30px;background: #dfdfdd;padding: 5px;margin: 20px 0 10px 0;width: 100%;}
+.cost{border-top: 4px solid #959595;width: 215px;padding: 10px 10px 10px 5px;}
+.cost em{font-size: 24px;color: #054b89;}
+.cost i{text-decoration: line-through;}
+.cost button{float: right;width: 68px;height: 30px;line-height: 30px;color: #fff;background: #ff005e;}
