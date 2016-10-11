@@ -12,7 +12,7 @@
 .goods_list p ,.goods_list a,.goods_list span{display: inline-block;float: left;}
 /*选择按钮*/
 .btn{height: 23px;width: 23px;margin: 63px 23px 0 5px;}
-.btn input{position: absolute;height: 23px;width: 23px;z-index: 999;cursor: pointer;/*opacity: 0;filter: alpha(opacity=0);*/}
+.btn input{position: absolute;height: 23px;width: 23px;z-index: 999;cursor: pointer;opacity: 0;filter: alpha(opacity=0);}
 .btn span{position: absolute;display: inline-block;height: 23px;width: 23px;z-index: 998;background: url(img/img_Cart/check2.png);}
 .btn span.active{background: url(img/img_Cart/checkbox.png);}
 /*商品图片*/
