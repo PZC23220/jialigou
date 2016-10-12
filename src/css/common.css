@@ -36,6 +36,8 @@ a:hover{text-decoration: underline;color: #E91456;}
 /*导航*/
 .content{overflow: hidden;padding-bottom: 20px;width: 100%;font-family: "微软雅黑" ;background: white;}
 .content1_nav{height: 36px;line-height: 36px;width: 1190px;z-index: 1000;position: relative;margin: 0 auto;}
+/*吸顶菜单*/
+.content1_nav.scroll{position: fixed;top: 0;background: rgba(255,255,255,0.5);width: 100%;}
 .content1_nav .content1_nav_list{display: inline-block;margin-left: 235px;}
 .content1_nav li{display: inline-block; padding: 0 21px;font-weight: bold;}
 .content1_nav li.Liborder{ padding: 0;font-weight: normal;font-size: 12px;color: #ccc;}
@@ -44,10 +46,8 @@ a:hover{text-decoration: underline;color: #E91456;}
 
 .content1_nav .tel{margin-left: 230px;color: #E91456;}
 .content1_nav .tel .tel_txt {font-weight: bold;color: #000;}
-
+/*banner*/
 .content1 .banner{border-top: solid 2px #e91455;width: 100%;position: relative;}
-
-
 /*页尾样式*/
 .foot{min-width: 1190px;border-top: 2px solid #e91455;background: #fff;}
 .footer{width: 1190px;margin: 0 auto;}

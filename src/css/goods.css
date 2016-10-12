@@ -14,4 +14,6 @@
 /*原价*/
 .cost i{text-decoration: line-through;}
 /*立即订购*/
-.cost button{float: right;width: 68px;height: 30px;line-height: 30px;color: #fff;background: #ff005e;}
+.cost button{float: right;width: 68px;height: 30px;line-height: 30px;background: #ff005e;}
+.cost button a{color: #fff;}
+.cost button a{text-decoration: none;}

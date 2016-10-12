@@ -19,26 +19,26 @@ jQuery(function(){
 			
 		}
 		return false;    //阻止页面跳转
-	})
-		//给手机号/邮箱输入框添加失去焦点事件
-		$('input').eq(0).blur(function(){
-			if($('#email').html() == '手机注册'){   //邮箱验证
-				if(/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.test($(this).val())){   //判断手机号是否合法
-					a = true;
-					$('.hint').eq(0).hide();  //隐藏提示
-				}else{
-					$('.hint').eq(0).html('邮箱不合法').show();   //显示提示
-				}
-			}else{   //手机号验证
-				if(/^1\d{10}$/.test($(this).val())){   //判断手机号是否合法
-					a = true;
-					$('.hint').eq(0).hide();
-				}else{
-					$('.hint').eq(0).html('手机号不合法').show();
-				}
+	});
+	//给手机号/邮箱输入框添加失去焦点事件
+	$('input').eq(0).blur(function(){
+		if($('#email').html() == '手机注册'){   //邮箱验证
+			if(/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.test($(this).val())){   //判断手机号是否合法
+				a = true;
+				$('.hint').eq(0).hide();  //隐藏提示
+			}else{
+				$('.hint').eq(0).html('邮箱不合法').show();   //显示提示
 			}
-			
-		});
+		}else{   //手机号验证
+			if(/^1\d{10}$/.test($(this).val())){   //判断手机号是否合法
+				a = true;
+				$('.hint').eq(0).hide();
+			}else{
+				$('.hint').eq(0).html('手机号不合法').show();
+			}
+		}
+		
+	});
 	$('.txt').each(function(idx,ele){   //当输入框内容不为空时显示删除全部按钮，否则隐藏按钮
 		ele.oninput = function(){
 			if($(this).val()){
@@ -82,15 +82,42 @@ jQuery(function(){
 		}
 	});
 	//给获取登录按钮添加点击事件
+	var nameArr,nameObj = {};  //设置全局变量；
 	$('button').eq(0).click(function(){
 		if(a && b && c && d){  // 当以上事件都为真时，提示注册成功，否则失败
+			//判断cookie是否存在
+			if(getCookie('username')){   //如果cookie存在
+				
+				nameArr = JSON.parse(getCookie('username'));   //解析cookie
+				console.log(nameArr);
+				for(var i=0;i<nameArr.length;i++){   //遍历数组
+					if(nameArr[i].username == $('input').eq(0).val()){   //如果用户名在数组对象中存在则显示提示、退出循环
+						$('.tip').show();
+						alert('用户名已注册！');
+						break;
+						return false;
+					}
+				}
+				if(i >= nameArr.length){   //当用户名不存在对应对象 隐藏提示、对新对象添加属性并追加到数组中
+					$('.tip').hide();
+					nameObj = {'username':$('input').eq(0).val(),'psw':$('input').eq(1).val()}
+					nameArr.push(nameObj);
+					alert('注册成功！');
+				}
+			}
+			else{  //如果cookie不存在，隐藏提示，令数组等于空，对新对象添加属性并追加到数组中
+				$('.tip').hide();
+				nameArr = [];
+				nameObj = {'username':$('input').eq(0).val(),'psw':$('input').eq(1).val()}
+				nameArr.push(nameObj);
+				alert('注册成功！');
+			}
+			nameArr = JSON.stringify(nameArr);
 			var s = new Date('2017-11-1')  //设置cookie过期日期
-			var username = setCookie('username',$('input').eq(0).val(),d,'/');   //设置用户名cookie
-			var psw = setCookie('psw',$('input').eq(1).val(),d,'/');    //设置密码cookie
-			alert("注册成功");
+			var username = setCookie('username',nameArr,s,'/');   //设置用户名cookie
 		}else{
 			alert("注册失败！")
 			return false;   //注册失败阻止跳转
 		}
-	});
+	});	
 });

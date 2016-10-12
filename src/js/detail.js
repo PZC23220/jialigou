@@ -2,9 +2,14 @@ jQuery(function(){
 	//加载页面头部
 	$('.head').load('head.html',function(){
 		//判断是否已经登录
-		if(getCookie('username')){
-			$('#login').html('Hi'+ getCookie('username') + '欢迎回嘉！')
-			$('a','#rigister').attr('href','login.html').html('[退出]');
+		if(getCookie('usName')){
+			$('#login').html('Hi'+ getCookie('usName') + '欢迎回嘉！')
+			$('a','#rigister').attr('href','login.html').html('[退出]').click(function(){
+				var d = new Date('2017-11-1');
+				$('#login').attr('href','login.html').html('[登录]')
+				$('a','#rigister').attr('href','rigister.html').html('[欢迎注册]');
+				setCookie('usName','',new Date('2017-11-1'),'/');
+			});
 		}
 		//判断购物车是否有商品
 		if(getCookie('$count')){
@@ -116,5 +121,17 @@ jQuery(function(){
 	//添加放大镜
 	$('li','.bigimg').each(function(){
 			$(this).pzoom();
+	});
+	//吸顶菜单
+	var navTop = $('.content1_nav').offset().top;
+	//滚动事件
+	$(window).on('scroll',function(){
+		var scrollTop = $(window).scrollTop();   //滚动条距离顶部的距离
+		//当页面滚动高度大于等于导航栏的高度时触发吸顶
+		if(scrollTop >= navTop){
+			$('.content1_nav').addClass('scroll');
+		}else{
+			$('.content1_nav').removeClass('scroll');
+		}
 	});
 });

@@ -20,24 +20,31 @@ jQuery(function(){
 	$('input').eq(3).val(Random()).click(function(){
 		$('input').eq(3).val(Random());
 	});
-//	//如果cookie中的用户名存在则自动填写表单内容
-//	if(getCookie('username')){
-//		$('input').eq(0).val(getCookie('username'));
-//		$('input').eq(1).val(getCookie('psw'));
-//	}
 	var a = b = c = false;
+	var nameArr,nameObj;
+	if(getCookie('username')){
+		nameArr = JSON.parse(getCookie('username'));
+	}else{
+		nameArr = [];
+	}
 	//给手机号输入框添加失去焦点事件
 	$('input').eq(0).blur(function(){
-		if($(this).val() == getCookie('username')){   //判断手机号是否合法
-			a = true;
-			$('.hint').eq(0).hide();
-		}else{
+		for(var i=0;i<nameArr.length;i++){
+			if($(this).val() == nameArr[i].username){//判断手机号是否合法
+				nameObj = nameArr[i];
+				a = true;
+				$('.hint').eq(0).hide();
+				break;
+			}
+		}
+		if(i >= nameArr.length){
 			$('.hint').eq(0).show();
 		}
+		
 	});
 	//给密码框添加失去焦点事件
 	$('input').eq(1).blur(function(){
-		if($(this).val() == getCookie('psw')){   //判断密码是否合法
+		if($(this).val() == nameObj.psw){   //判断密码是否合法
 			b = true;
 			$('.hint').eq(1).hide();
 		}else{
@@ -62,6 +69,8 @@ jQuery(function(){
 //	});
 	$('button').eq(0).click(function(){
 		if(a && b && c){  // 当以上事件都为真时，提示注册成功，否则失败
+			var d = new Date('2017-11-1');
+			var usName = setCookie('usName',nameObj.username,d,'/');
 			alert("登录成功");
 		}else{
 			alert("登录失败！")
@@ -83,4 +92,4 @@ jQuery(function(){
 		return str;
 	}
 	
-})
+});

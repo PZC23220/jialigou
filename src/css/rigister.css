@@ -12,6 +12,9 @@
 /*登录按钮*/
 .contain button{width: 275px;height: 30px;background: #e21357;color: white;}
 .contain button:hover{background: #cc1c23;}
+/*输入框输入错误时的提示*/
 .hint{position: absolute;color: red;display: none;}
+/*用户已注册时的提示*/
+.tip{position: absolute;color: red;font-size: 14px;font-weight: bold;display: none;}
 /*给图片添加浮动*/
 .banner{float: left;}

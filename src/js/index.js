@@ -2,14 +2,19 @@ jQuery(function($){
 	//加载页面头部
 	$('.head').load('html/head.html',function(){
 		//更改头部属性
-		$('#logo').find('img').attr('src','img/ladygood.png');
+		$('#logo').attr('href','index.html').find('img').attr('src','img/ladygood.png');
 		$('#login').find('a').attr('href','html/login.html');
 		$('#rigister').find('a').attr('href','html/rigister.html');
 		$('form').attr('action','html/goods.html');
 		$('.cart').find('a').attr('href','html/Cart.html');
-		if(getCookie('username')){  //判断用户是否登录
-			$('#login').html('Hi'+ getCookie('username') + '欢迎回嘉！')
-			$('a','#rigister').attr('href','html/login.html').html('[退出]');
+		if(getCookie('usName')){  //判断用户是否登录
+			$('#login').html('Hi'+ getCookie('usName') + '欢迎回嘉！')
+			$('a','#rigister').attr('href','html/login.html').html('[退出]').click(function(){
+				var d = new Date('2017-11-1');
+				$('#login').attr('href','html/login.html').html('[登录]')
+				$('a','#rigister').attr('href','html/rigister.html').html('[欢迎注册]');
+				setCookie('usName','',new Date('2017-11-1'),'/');
+			});
 		}
 		if(getCookie('$count')){   //读取购物车数量
 			$('.cart_num').html(getCookie('$count'));
@@ -62,5 +67,11 @@ jQuery(function($){
 		$(this).click(function(){
 			$(this).pClick('prev');
 		});
-	})
-})
+	});
+	//固定条二维码
+	$('span',"#qr").click(function(){
+		$('#qr').hide();
+	});
+});
+
+

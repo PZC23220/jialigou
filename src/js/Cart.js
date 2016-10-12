@@ -1,9 +1,14 @@
 jQuery(function($){
 	//加载头部
 	$('.head_nav').load('head.html div.head_nav_content',function(){
-		if(getCookie('username')){   //判断是否已登录
-			$('#login').html('Hi'+ getCookie('username') + '欢迎回嘉！')
-			$('a','#rigister').attr('href','login.html').html('[退出]');
+		if(getCookie('usName')){   //判断是否已登录
+			$('#login').html('Hi'+ getCookie('usName') + '欢迎回嘉！')
+			$('a','#rigister').attr('href','login.html').html('[退出]').click(function(){
+				var d = new Date('2017-11-1');
+				$('#login').attr('href','login.html').html('[登录]')
+				$('a','#rigister').attr('href','rigister.html').html('[欢迎注册]');
+				setCookie('usName','',new Date('2017-11-1'),'/');
+			});
 		}
 	});
 	$('.foot').load('foot.html');   //加载尾部

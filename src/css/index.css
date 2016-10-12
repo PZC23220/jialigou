@@ -74,3 +74,8 @@
 /*广告*/
 .ad{margin-top: 15px;}
 
+/*固定条二维码*/
+#qr{bottom:-3px;left:0;z-index:999999;width:100%;position:fixed;}
+#qr span{top:0px;left:10px;color:#ffffff;font-size:30px;display: block;width: 30px;width: 30px;position: absolute;cursor: pointer;}
+#qr img{width: 100%;}
+
