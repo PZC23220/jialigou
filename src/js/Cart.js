@@ -60,6 +60,7 @@ jQuery(function($){
 		$li.appendTo('.goods_list');   //将$li追加到页面的ul中
 		//当购物车不为空时隐藏.emp
 		tips();
+		total();
 	}
 	//显示隐藏.emp(购物车为空提示)
 	function tips(){
@@ -87,6 +88,7 @@ jQuery(function($){
 		}else{   //数量减一
 			$(this).siblings('span').html(--$count);
 		}
+		str = JSON.parse(getCookie('goods'));
 		for(var i in str){  //遍历cookie数组更改商品数量
 			if(str[i].id == $(this).closest('li').find('.goods_title i').html()){
 				var num = parseInt(getCookie('$count')) - str[i].count;
@@ -102,6 +104,7 @@ jQuery(function($){
 	$('.goods_list').on('click','.add',function(){
 		var $count = $(this).siblings('span').html();  //保存商品数量
 		$(this).siblings('span').html(++$count);  //数量加1
+		str = JSON.parse(getCookie('goods'));
 		for(var i in str){//遍历cookie数组更改商品数量
 			if(str[i].id == $(this).closest('li').find('.goods_title i').html()){
 				var num = parseInt(getCookie('$count')) - str[i].count;
@@ -116,16 +119,17 @@ jQuery(function($){
 	//删除商品	
 	$('.goods_list').on('click','.del',function(){
 		$(this).closest('li').remove();
+		str = JSON.parse(getCookie('goods'));
 		for(var i in str){
 			if(str[i].id == $(this).closest('li').find('.goods_title i').html()){
 				str.splice(i,1);
-				str = JSON.stringify(str);
-				setCookie('goods',str,d,'/')
+				setCookie('goods',JSON.stringify(str),d,'/');
 			}
 		}
 		var cha = parseInt(getCookie('$count')) - $(this).parents('li').find('.count span').html();
 		setCookie('$count',cha,d,'/');
 		tips();
+		total();
 	});
 	
 	//全选
@@ -141,11 +145,12 @@ jQuery(function($){
 		$(":checkbox",'.btn').each(function(){
 			if(this.checked == true){
 				$(this).closest('li').remove();
+				str = JSON.parse(getCookie('goods'));
 				for(var i in str){
 					if(str[i].id == $(this).closest('li').find('.goods_title i').html()){
 						str.splice(i,1);
-						str = JSON.stringify(str);
-						setCookie('goods',str,d,'/');
+						setCookie('goods',JSON.stringify(str),d,'/');
+						console.log(getCookie('goods'));
 					}
 				}
 				var cha = parseInt(getCookie('$count')) - $(this).parents('li').find('.count span').html();
@@ -153,16 +158,19 @@ jQuery(function($){
 			}
 		});
 		tips();
+		total();
 	});
 	//清空购物车
 	$('span','.account').eq(1).click(function(){
 		$(":checkbox",'.btn').each(function(){
 			$(this).closest('li').remove();
+			str = JSON.parse(getCookie('goods'));
 			str = '';
 			setCookie('goods',str,d,'/');
 			setCookie('$count',0,d,'/');
 		});
 		tips();
+		total();
 	});
 	total();
 	//计算总价

@@ -63,7 +63,7 @@ jQuery(function(){
 				proString = JSON.parse(getCookie('goods'));   //将cookie字符串转换成数组
 					for(var i=0;i<proString.length;i++){   //遍历数组
 						if(proString[i].id == $('.G01').attr('class')){   //如果存在对应的商品对象
-							proString[i].count = proString[i].count + 1;  //商品数量加1
+							proString[i].count = proString[i].count + parseInt($('.count_num').find('input').val());  //商品数量增加
 							break;//退出循环
 						}
 					}
