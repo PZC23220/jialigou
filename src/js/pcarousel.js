@@ -51,6 +51,7 @@ $.prototype.pcarousel = function(){
 	}
 }
 var index = 0;
+//前后翻页
 $.prototype.pClick = function(type){
 	//初始化
 	var $div =this.closest('div.hot_show');
@@ -70,7 +71,7 @@ $.prototype.pClick = function(type){
 			index ++;
 		}
 	}
-	 
+	 //设置高亮
 	$ul.removeClass('active').eq(index).addClass('active');
 	
 	

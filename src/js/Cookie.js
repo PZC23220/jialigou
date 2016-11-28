@@ -4,7 +4,7 @@
 //设置cookie
 function setCookie(name,value,expires,path,domain,secure){
 	//name=value
-	var cookieText = encodeURIComponent(name) +"="+ encodeURIComponent(value);
+	var cookieText = name +"="+ value;
 	//失效时间expires=date
 	if(expires instanceof Date){
 		cookieText += ";expires="+expires;
