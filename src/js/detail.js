@@ -76,7 +76,7 @@ jQuery(function(){
 					$pro ={'id':$('.G01').attr('class'),'title':$('span','.alt').html(),'img':$cruttenli.find('img').attr('src'),'price':$('em','.price').html(),'count':parseInt($('input','.count_num').val())};
 					proString.push($pro);
 				}
-				var d = new Date('2017-11-1');   //设置cookie过期时间
+				var d = new Date('2018-11-1');   //设置cookie过期时间
 				proString = JSON.stringify(proString);    //将数组转换为字符串
 				var cookieText = setCookie('goods',proString,d,'/');  //设置商品cookie
 				var total = setCookie('$count',$count,d,'/');   //设置购物车数量cookie

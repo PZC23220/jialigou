@@ -13,7 +13,7 @@ jQuery(function($){
 	});
 	$('.foot').load('foot.html');   //加载尾部
 	//设置cookie过期日期
-	var d = new Date('2016-11-1');
+	var d = new Date('2018-11-1');
 	//cookiede 读取
 	var str;
 	if(getCookie('goods')){
